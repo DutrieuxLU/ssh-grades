@@ -20,12 +20,14 @@ pub mod output;
 pub mod parser;
 pub mod user;
 fn main() {
-    let curr_user: User = user::getUser();
+    let curr_user = user::get_user()
+        .expect("Error in User getting. Try Restarting the program and email ldutrie@purdue.edu");
+
     let tcp = TcpStream::connect("data.cs.purdue.edu:22").unwrap();
     let mut sess = Session::new().unwrap();
     sess.set_tcp_stream(tcp);
     sess.handshake().unwrap();
-    sess.userauth_password(curr_user.user_name, curr_user.password)
+    sess.userauth_password(curr_user.user_name.as_str(), curr_user.password.as_str())
         .unwrap();
 
     println!("--- Testing directory change and ls ---");

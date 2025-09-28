@@ -1,5 +1,3 @@
-use std::env::current_dir;
-
 use crate::*;
 
 pub fn read_files(file_list: &mut Vec<GradeFile>, grades_dir: &str, sess: Session) {
