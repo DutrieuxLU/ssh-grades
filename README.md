@@ -25,7 +25,7 @@
 
    ```bash
 
-   git clone https://github.com/your-username/ssh-grades.git
+   git clone https://github.com/DutrieuxLU/ssh-grades.git
 
    cd ssh-grades
 
