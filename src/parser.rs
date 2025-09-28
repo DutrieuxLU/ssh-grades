@@ -1,3 +1,5 @@
+use std::env::current_dir;
+
 use crate::*;
 
 pub fn read_files(file_list: &mut Vec<GradeFile>, grades_dir: &str, sess: Session) {
@@ -26,24 +28,18 @@ pub fn read_files(file_list: &mut Vec<GradeFile>, grades_dir: &str, sess: Sessio
     }
 }
 
-pub fn parse_grades(file_list: &mut Vec<GradeFile>) {
+pub fn parse_grades(file_list: &mut Vec<GradeFile>, user: User) {
     for file in file_list {
         let curr_content = file.content.as_ref().unwrap();
-        match curr_content.trim() {
-            "ldutrie" => {
-                continue;
-            }
-            _ => {}
+        // if the file only has the username of the current user, that means that file has not
+        // yet been filled in.
+        if curr_content.trim() == user.user_name {
+            continue;
         }
         file.has_content = true;
         // all files that will be worked with from here on HAVE been graded.
         let mut grade_str = curr_content.split_whitespace().last().unwrap().split('/');
         file.points_gained = Some(grade_str.next().unwrap().parse().unwrap());
         file.points_available = Some(grade_str.next().unwrap().parse().unwrap());
-        // println!(
-        //     "Grade for {}, {}",
-        //     file.name,
-        //     file.points_gained.unwrap() / file.points_available.unwrap()
-        // );
     }
 }

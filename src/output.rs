@@ -1,7 +1,5 @@
 use crate::*;
 
-pub fn prompt_user() {}
-
 fn colorize_grade(grade_as_pct: f64) -> colored::ColoredString {
     if grade_as_pct > 90.0 {
         format!("{:.2}", grade_as_pct).bright_green()
