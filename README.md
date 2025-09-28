@@ -6,8 +6,8 @@
 - Rust: This project is written in Rust. You'll need the Rust toolchain, which can be installed using [rustup](https://rustup.rs/).
 - `ssh2` system dependencies:
     - On Debian/Ubuntu: `sudo apt-get install -y libssl-dev pkg-config`
-    - On Fedora/CentOS: `sudo dnf install -y openssl-devel pkg-config`
     - On macOS: `brew install openssl`
+    - On Other Linux Distros: hopefully you can figure it out lol.
 
 ## Installation
 
