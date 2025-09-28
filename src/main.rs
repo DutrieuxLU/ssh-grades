@@ -7,8 +7,8 @@ use std::net::TcpStream;
 pub struct GradeFile {
     name: String,
     content: Option<String>,
-    points_gained: Option<u32>,
-    points_available: Option<u32>,
+    points_gained: Option<f64>,
+    points_available: Option<f64>,
     checked: bool,
 }
 

@@ -32,9 +32,21 @@ pub fn parse_grades(file_list: &mut Vec<GradeFile>) {
         if file.checked {
             let curr_content = file.content.as_ref().unwrap();
             match curr_content.trim() {
-                "ldutrie" => println!("File {} is empty", file.name.red()),
+                "ldutrie" => {
+                    println!("File {} is empty", file.name.red());
+                    continue;
+                }
                 _ => println!("File {} Has been graded", file.name.bright_green()),
             }
+            // all files that will be worked with from here on HAVE been graded.
+            let mut grade_str = curr_content.split_whitespace().last().unwrap().split('/');
+            file.points_gained = Some(grade_str.next().unwrap().parse().unwrap());
+            file.points_available = Some(grade_str.next().unwrap().parse().unwrap());
+            // println!(
+            //     "Grade for {}, {}",
+            //     file.name,
+            //     file.points_gained.unwrap() / file.points_available.unwrap()
+            // );
         }
     }
 }
