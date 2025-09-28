@@ -11,7 +11,15 @@ pub struct GradeFile {
     points_available: Option<f64>,
     has_content: bool,
 }
+pub struct User {
+    user_name: String,
+    password: String,
+}
 
+static mut CURR_USER: User = User {
+    user_name: String::new(),
+    password: String::new(),
+};
 pub mod output;
 pub mod parser;
 fn main() {
