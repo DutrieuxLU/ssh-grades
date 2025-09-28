@@ -2,8 +2,7 @@
 
 ## Hey guys, my name is Lukas (ldutrie@purdue.edu), let me know if this tool helped you at all. 
 
-⭐ Star the repository on GitHub. This is the easiest way to show your appreciation and helps others discover the project.
-Dependencies
+⭐ Star the repository on GitHub, and follow me! This is the easiest way to show your appreciation and helps others discover the project.
 
 ## Dependencies
 
