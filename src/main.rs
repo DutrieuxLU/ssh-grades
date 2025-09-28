@@ -20,9 +20,9 @@ fn main() {
 
     println!("--- Testing directory change and ls ---");
     let mut channel = sess.channel_session().unwrap();
-    let username = "ldutrie";
-
-    let command = format!("cd ~/../cs354/grades/{} && ls -F", username);
+    // let username = "ldutrie";
+    let remote_base_dir = "~/../cs354/grades/ldutrie";
+    let command = format!("cd {} && ls -F", remote_base_dir);
     println!("Executing command: {}", command);
     channel.exec(&command).unwrap();
 
@@ -39,7 +39,33 @@ fn main() {
         .collect();
 
     for i in 0..file_list.len() {
-        println!("{}", file_list[i].name);
+        let file = &file_list[i];
+
+        // 1. Open a new channel for each command
+        let mut channel = sess.channel_session().unwrap();
+
+        // 2. Construct the full path and the `cat` command
+        let command = format!("cd {} && cat {}", remote_base_dir, file.name);
+
+        channel.exec(&command).unwrap();
+
+        // 3. Read the file's content from the channel's stdout
+        let mut content = String::new();
+        channel.read_to_string(&mut content).unwrap();
+
+        // 4. Print the output
+        println!("\n--- Content of {} ---", file.name);
+        println!("{}", content.trim());
+
+        // 5. Close the channel and check for errors
+        channel.wait_close().unwrap();
+        let exit_code = channel.exit_status().unwrap();
+        if exit_code != 0 {
+            println!(
+                "[Warning] Command for {} exited with status {}",
+                file.name, exit_code
+            );
+        }
     }
 
     // Read standard error
