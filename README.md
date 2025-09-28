@@ -1,77 +1,114 @@
-ssh_grades
-Hey guys, my name is Lukas (ldutrie@purdue.edu), let me know if this tool helped you at all. If you find it useful, please consider giving it a ⭐ on GitHub!
-Show Your Support
+# ssh_grades
+
+## Hey guys, my name is Lukas (ldutrie@purdue.edu), let me know if this tool helped you at all. 
 
 ⭐ Star the repository on GitHub. This is the easiest way to show your appreciation and helps others discover the project.
 Dependencies
 
-    Rust: This project is written in Rust. You'll need the Rust toolchain, which can be installed using rustup.
+## Dependencies
 
-    ssh2 system dependencies:
 
-        On Debian/Ubuntu: sudo apt-get install -y libssl-dev pkg-config
+- Rust: This project is written in Rust. You'll need the Rust toolchain, which can be installed using [rustup](https://rustup.rs/).
 
-        On macOS: brew install openssl
+- `ssh2` system dependencies:
 
-        On Other Linux Distros: hopefully you can figure it out lol.
+    - On Debian/Ubuntu: `sudo apt-get install -y libssl-dev pkg-config`
 
-Installation
+    - On macOS: `brew install openssl`
 
-    Clone the repository:
+    - On Other Linux Distros: hopefully you can figure it out lol.
 
-    git clone [https://github.com/your-username/ssh-grades.git](https://github.com/your-username/ssh-grades.git)
-    cd ssh-grades
 
-    Build the project:
+## Installation
 
-    cargo build --release
 
-    The executable will be located at target/release/ssh-grades.
+1. **Clone the repository:**
 
-Adding to PATH
+   ```bash
 
-For ease of use, you can add the ssh-grades executable to your system's PATH.
-Linux/macOS
+   git clone https://github.com/your-username/ssh-grades.git
 
-    Move the binary to a common location:
+   cd ssh-grades
 
-    sudo mv target/release/ssh-grades /usr/local/bin/
+   ```
 
-    Ensure /usr/local/bin is in your PATH. You can check this by running echo $PATH. If it's not there, you can add it to your shell's configuration file (e.g., ~/.bashrc, ~/.zshrc):
 
-    echo 'export PATH="/usr/local/bin:$PATH"' >> ~/.bashrc
-    source ~/.bashrc
+2. **Build the project:**
 
-Windows
+   ```bash
 
-    Create a directory for your executables, for example, C:\Users\YourUser\bin.
+   cargo build --release
 
-    Move the ssh-grades.exe file from target\release\ssh-grades.exe to the directory you just created.
+   ```
 
-    Add the directory to your PATH:
+   The executable will be located at `target/release/ssh-grades`.
 
-        Search for "Environment Variables" in the Start Menu and select "Edit the system environment variables".
 
-        Click on the "Environment Variables..." button.
+## Adding to PATH
 
-        In the "System variables" section, find the Path variable and click "Edit...".
 
-        Click "New" and add the path to your executables directory (e.g., C:\Users\YourUser\bin).
+For ease of use, you can add the `ssh-grades` executable to your system's PATH.
 
-        Click "OK" on all windows to save the changes.
 
-Using ssh-grades
+### Linux/macOS
 
-ssh-grades is designed to be very easy to use for people taking CS354 with Dr. Comer in Fall 2025. Assuming that you have everything installed, you will have a few steps on first startup.
 
-    You will be prompted for your Purdue username and password. These should be the exact same as what you use to log in to Data/Xinu. DO NOT ADD THE ',PUSH' TO YOUR PASSWORD.
+1. **Move the binary to a common location:**
 
-    If you entered your username and password correctly, you should be prompted by DUO on your phone. Accept this confirmation, and you should be up and running! If not, submit an issue or email me.
+   ```bash
 
-    If you think you entered your password incorrectly, running ssh-grades reset will restart your login process.
+   sudo mv target/release/ssh-grades /usr/local/bin/
 
-Contributing
+   ```
 
-ssh-grades is a pet project, and there's a lot that can be worked on. If you are interested in Rust or SSH, I would highly encourage you to take a look at one of the issues and see what you've got!
 
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+2. **Ensure `/usr/local/bin` is in your PATH.** You can check this by running `echo $PATH`. If it's not there, you can add it to your shell's configuration file (e.g., `~/.bashrc`, `~/.zshrc`):
+
+   ```bash
+
+   echo 'export PATH="/usr/local/bin:$PATH"' >> ~/.bashrc
+
+   source ~/.bashrc
+
+   ```
+
+
+### Windows
+## Using WSL Might make this easier BTW
+
+
+1. **Create a directory for your executables, for example, `C:\Users\YourUser\bin`.**
+
+
+2. **Move the `ssh-grades.exe` file from `target\release\ssh-grades.exe` to the directory you just created.**
+
+
+3. **Add the directory to your PATH:**
+
+   - Search for "Environment Variables" in the Start Menu and select "Edit the system environment variables".
+
+   - Click on the "Environment Variables..." button.
+
+   - In the "System variables" section, find the `Path` variable and click "Edit...".
+
+   - Click "New" and add the path to your executables directory (e.g., `C:\Users\YourUser\bin`).
+
+   - Click "OK" on all windows to save the changes.
+
+
+## Using ssh-grades
+
+
+ssh-grades is designed to be very easy to use for people who are taking CS354 with Dr. Comer in Fall 2025. Assuming that you have everything installed, you will have a few steps on first startup.
+
+
+1. You will be prompted for your Purdue username and password. These should be the exact same as what you use to login to Data/Xinu. **DO NOT ADD THE ',PUSH' TO YOUR PASSWORD**.
+
+2. If you got your username/password right, you should be prompted by **DUO** on your phone. Accept this confirmation, and you should be up and running! If not, submit an issue or email me.
+
+3. If you think you entered your password incorrectly, doing `ssh-grades reset` will restart your login process.
+
+
+## Contributing
+
+ssh-grades is a pet project, and has a lot of stuff that can be worked on. If you are interested in Rust or SSH, I would highly encourage you to take a look at one of the issues, and see what you got! 
