@@ -20,7 +20,6 @@ const KEYRING_SERVICE_NAME: &str = "ssh-grades-354";
 pub fn get_user() -> Result<User> {
     let args: Vec<String> = env::args().collect();
 
-    // Safely check for the "reset" argument to prevent crashing
     if args.get(1).map_or(false, |arg| arg == "reset") {
         match reset_user() {
             Ok(_) => {
@@ -37,6 +36,7 @@ pub fn get_user() -> Result<User> {
 
         if config_path.exists() {
             println!("Welcome back!");
+            println!("Check {} for your authentification", "DUO".green());
             load_existing_user(&config_path)
         } else {
             println!("Welcome! Please set up your credentials.");
