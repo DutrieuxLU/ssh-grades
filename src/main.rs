@@ -9,11 +9,11 @@ pub struct GradeFile {
     content: Option<String>,
     points_gained: Option<f64>,
     points_available: Option<f64>,
-    checked: bool,
+    has_content: bool,
 }
 
+pub mod output;
 pub mod parser;
-
 fn main() {
     let tcp = TcpStream::connect("data.cs.purdue.edu:22").unwrap();
     let mut sess = Session::new().unwrap();
@@ -39,7 +39,7 @@ fn main() {
             content: (None),
             points_gained: (None),
             points_available: (None),
-            checked: (false),
+            has_content: (false),
         })
         .collect();
 
@@ -57,4 +57,5 @@ fn main() {
     println!("Exit status: {}", channel.exit_status().unwrap());
 
     parser::parse_grades(&mut file_list);
+    output::print_summary(&file_list);
 }
