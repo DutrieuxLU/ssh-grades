@@ -1,3 +1,4 @@
+use colored::Colorize;
 use ssh2::Session;
 use std::io::prelude::*;
 use std::net::TcpStream;
@@ -5,7 +6,9 @@ use std::net::TcpStream;
 #[derive(Debug)]
 pub struct GradeFile {
     name: String,
-    grade: Option<u32>,
+    content: Option<String>,
+    points_gained: Option<u32>,
+    points_available: Option<u32>,
     checked: bool,
 }
 
@@ -29,57 +32,29 @@ fn main() {
     // Read standard output
     let mut stdout_str = String::new();
     channel.read_to_string(&mut stdout_str).unwrap();
-    let file_list: Vec<GradeFile> = stdout_str
+    let mut file_list: Vec<GradeFile> = stdout_str
         .split_whitespace()
         .map(|s| GradeFile {
             name: (s.to_string()),
-            grade: (None),
+            content: (None),
+            points_gained: (None),
+            points_available: (None),
             checked: (false),
         })
         .collect();
 
-    for i in 0..file_list.len() {
-        let file = &file_list[i];
-
-        // 1. Open a new channel for each command
-        let mut channel = sess.channel_session().unwrap();
-
-        // 2. Construct the full path and the `cat` command
-        let command = format!("cd {} && cat {}", remote_base_dir, file.name);
-
-        channel.exec(&command).unwrap();
-
-        // 3. Read the file's content from the channel's stdout
-        let mut content = String::new();
-        channel.read_to_string(&mut content).unwrap();
-
-        // 4. Print the output
-        println!("\n--- Content of {} ---", file.name);
-        println!("{}", content.trim());
-
-        // 5. Close the channel and check for errors
-        channel.wait_close().unwrap();
-        let exit_code = channel.exit_status().unwrap();
-        if exit_code != 0 {
-            println!(
-                "[Warning] Command for {} exited with status {}",
-                file.name, exit_code
-            );
-        }
-    }
+    parser::read_files(&mut file_list, remote_base_dir, sess);
 
     // Read standard error
     let mut stderr_str = String::new();
     channel.stderr().read_to_string(&mut stderr_str).unwrap();
 
-    if !stdout_str.is_empty() {
-        println!("--- Standard Output ---\n{}", stdout_str);
-    }
     if !stderr_str.is_empty() {
         println!("--- Standard Error ---\n{}", stderr_str);
         println!(" Email ldutrie@purdue.edu with the error output plz!");
     }
-
     channel.wait_close().unwrap();
     println!("Exit status: {}", channel.exit_status().unwrap());
+
+    parser::parse_grades(&mut file_list);
 }
