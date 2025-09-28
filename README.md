@@ -1,56 +1,77 @@
-# ssh_grades
-## Hey guys, my name is Lukas (ldutrie@purdue.edu), let me know if this tool helped you at all. 
+ssh_grades
+Hey guys, my name is Lukas (ldutrie@purdue.edu), let me know if this tool helped you at all. If you find it useful, please consider giving it a ⭐ on GitHub!
+Show Your Support
 
-## Dependencies
+⭐ Star the repository on GitHub. This is the easiest way to show your appreciation and helps others discover the project.
+Dependencies
 
-- Rust: This project is written in Rust. You'll need the Rust toolchain, which can be installed using [rustup](https://rustup.rs/).
-- `ssh2` system dependencies:
-    - On Debian/Ubuntu: `sudo apt-get install -y libssl-dev pkg-config`
-    - On macOS: `brew install openssl`
-    - On Other Linux Distros: hopefully you can figure it out lol.
+    Rust: This project is written in Rust. You'll need the Rust toolchain, which can be installed using rustup.
 
-## Installation
+    ssh2 system dependencies:
 
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/your-username/ssh-grades.git
-   cd ssh-grades
-   ```
+        On Debian/Ubuntu: sudo apt-get install -y libssl-dev pkg-config
 
-2. **Build the project:**
-   ```bash
-   cargo build --release
-   ```
-   The executable will be located at `target/release/ssh-grades`.
+        On macOS: brew install openssl
 
-## Adding to PATH
+        On Other Linux Distros: hopefully you can figure it out lol.
 
-For ease of use, you can add the `ssh-grades` executable to your system's PATH.
+Installation
 
-### Linux/macOS
+    Clone the repository:
 
-1. **Move the binary to a common location:**
-   ```bash
-   sudo mv target/release/ssh-grades /usr/local/bin/
-   ```
+    git clone [https://github.com/your-username/ssh-grades.git](https://github.com/your-username/ssh-grades.git)
+    cd ssh-grades
 
-2. **Ensure `/usr/local/bin` is in your PATH.** You can check this by running `echo $PATH`. If it's not there, you can add it to your shell's configuration file (e.g., `~/.bashrc`, `~/.zshrc`):
-   ```bash
-   echo 'export PATH="/usr/local/bin:$PATH"' >> ~/.bashrc
-   source ~/.bashrc
-   ```
+    Build the project:
 
-### Windows
+    cargo build --release
 
-1. **Create a directory for your executables, for example, `C:\Users\YourUser\bin`.**
+    The executable will be located at target/release/ssh-grades.
 
-2. **Move the `ssh-grades.exe` file from `target\release\ssh-grades.exe` to the directory you just created.**
+Adding to PATH
 
-3. **Add the directory to your PATH:**
-   - Search for "Environment Variables" in the Start Menu and select "Edit the system environment variables".
-   - Click on the "Environment Variables..." button.
-   - In the "System variables" section, find the `Path` variable and click "Edit...".
-   - Click "New" and add the path to your executables directory (e.g., `C:\Users\YourUser\bin`).
-   - Click "OK" on all windows to save the changes.
+For ease of use, you can add the ssh-grades executable to your system's PATH.
+Linux/macOS
 
-## Using ssh-grades
+    Move the binary to a common location:
+
+    sudo mv target/release/ssh-grades /usr/local/bin/
+
+    Ensure /usr/local/bin is in your PATH. You can check this by running echo $PATH. If it's not there, you can add it to your shell's configuration file (e.g., ~/.bashrc, ~/.zshrc):
+
+    echo 'export PATH="/usr/local/bin:$PATH"' >> ~/.bashrc
+    source ~/.bashrc
+
+Windows
+
+    Create a directory for your executables, for example, C:\Users\YourUser\bin.
+
+    Move the ssh-grades.exe file from target\release\ssh-grades.exe to the directory you just created.
+
+    Add the directory to your PATH:
+
+        Search for "Environment Variables" in the Start Menu and select "Edit the system environment variables".
+
+        Click on the "Environment Variables..." button.
+
+        In the "System variables" section, find the Path variable and click "Edit...".
+
+        Click "New" and add the path to your executables directory (e.g., C:\Users\YourUser\bin).
+
+        Click "OK" on all windows to save the changes.
+
+Using ssh-grades
+
+ssh-grades is designed to be very easy to use for people taking CS354 with Dr. Comer in Fall 2025. Assuming that you have everything installed, you will have a few steps on first startup.
+
+    You will be prompted for your Purdue username and password. These should be the exact same as what you use to log in to Data/Xinu. DO NOT ADD THE ',PUSH' TO YOUR PASSWORD.
+
+    If you entered your username and password correctly, you should be prompted by DUO on your phone. Accept this confirmation, and you should be up and running! If not, submit an issue or email me.
+
+    If you think you entered your password incorrectly, running ssh-grades reset will restart your login process.
+
+Contributing
+
+ssh-grades is a pet project, and there's a lot that can be worked on. If you are interested in Rust or SSH, I would highly encourage you to take a look at one of the issues and see what you've got!
+
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
